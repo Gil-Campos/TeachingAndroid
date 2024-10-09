@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LinearLayout</string>
+    <string name="user_input_hint">Please enter your name</string>
+    <string name="finish_user_input">Finish</string>
 </resources>
