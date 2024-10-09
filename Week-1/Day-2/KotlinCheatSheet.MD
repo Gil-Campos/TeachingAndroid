@@ -1,6 +1,3 @@
-Here's a Kotlin cheat sheet in Markdown format for your students:
-
-```markdown
 # Kotlin Cheat Sheet for Android Developers
 
 ## 1. Variables
@@ -222,4 +219,4 @@ Kotlin has built-in null safety, preventing null pointer exceptions.
 
 ---
 
-This cheat sheet provides a quick reference to the basic Kotlin concepts needed for Android development. Encourage your students to practice these concepts to deepen their understanding.
+This cheat sheet provides a quick reference to the basic Kotlin concepts needed for Android development.
