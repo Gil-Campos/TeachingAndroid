@@ -8,39 +8,36 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.linearlayout.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var userName: TextView
-    private lateinit var userInput: EditText
-    private lateinit var finishApp: Button
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+
+        setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        initComponents()
         getUserData()
     }
 
-
-    private fun initComponents() {
-        userName = findViewById(R.id.tvUserName)
-        userInput = findViewById(R.id.etUserInput)
-        finishApp = findViewById(R.id.btnFinish)
-    }
-
     private fun getUserData() {
-        finishApp.setOnClickListener {
-            val data = userInput.text.toString()
-            userName.text = data
+        binding.apply {
+            btnFinish.setOnClickListener {
+                val data = etUserInput.text.toString()
+                tvUserName.text = data
+            }
         }
-
     }
 }
