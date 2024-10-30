@@ -15,7 +15,7 @@ class FirstFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<FirstViewModel>()
-    private val adapter = RecyclerAdapter()
+    private lateinit var postAdapter: RecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +27,6 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        initRecyclerView()
         observers()
         viewModel.getAllPosts()
     }
@@ -36,16 +34,16 @@ class FirstFragment : Fragment() {
     private fun observers() {
         viewModel.allPost.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
-                adapter.showData(it.subList(0, 10))
-                adapter.notifyDataSetChanged()
+                initRecyclerView(it)
             }
         }
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(post: List<PostStructure>) {
         binding.rvPosts.apply {
+            postAdapter = RecyclerAdapter(post)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = adapter
+            adapter = postAdapter
         }
     }
 

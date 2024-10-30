@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.networking.databinding.PostItemLayoutBinding
 
-class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-
-    private val posts: MutableList<PostStructure> = mutableListOf()
+class RecyclerAdapter(private val posts: List<PostStructure>) :
+    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: PostItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -36,10 +35,5 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(posts[position])
-    }
-
-    fun showData(postList: List<PostStructure>) {
-        posts.clear()
-        posts.addAll(postList.toMutableList())
     }
 }
